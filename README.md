@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍺 Brewery Explorer
 
-## Getting Started
+A React/Next.js application for exploring breweries with advanced scrolling and selection features.
 
-First, run the development server:
+## ✨ Features
+
+- **Smart Infinite Scroll** - Always maintains 15 breweries with automatic loading
+- **Multi-selection** - Right-click to select/deselect multiple breweries
+- **Responsive Carousel** - 5 breweries visible at a time with smooth transitions
+- **State Management** - Efficient global state with Zustand
+- **Type Safety** - Built with TypeScript
+
+## 🛠️ Technologies
+
+- **React.js** with Next.js framework
+- **Zustand** for state management ([GitHub](https://github.com/pmndrs/zustand))
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+
+## 📡 API Resources
+
+- `GET https://api.openbrewerydb.org/v1/breweries?per_page=15&page=1` - Fetch breweries list
+- `GET https://api.openbrewerydb.org/v1/breweries/{id}` - Fetch single brewery details
+
+## 🎮 Implementation Details
+
+### ✅ Core Requirements
+- [x] Display 15 breweries on initial load
+- [x] Save data in Zustand store
+- [x] Multi-select with right-click
+- [x] Dynamic "Delete" button appears when selections exist
+- [x] Remove selected items while maintaining 15 breweries
+- [x] Deselect on second right-click
+- [x] Left-click navigates to brewery details page
+- [x] Auto-fetch next page when data runs low
+
+### ✅ Additional Features
+- [x] Show only 5 breweries at a time
+- [x] Maintain 15 breweries in render pool
+- [x] Lazy scroll: replace first 5 with next 5 when scrolling to bottom
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Build for production
+npm run build
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open http://localhost:3000 to view the application.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🎯 How to Use
+Scroll: Use ↑↓ arrows, mouse wheel, or click Up/Down buttons
 
-## Learn More
+Select: Right-click on brewery cards to select multiple
 
-To learn more about Next.js, take a look at the following resources:
+Delete: Click "Delete" button to remove selected breweries
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+View Details: Left-click on any card to see brewery information
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🌐 Live Demo
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📄 License
+MIT License - feel free to use this project for learning purposes!
