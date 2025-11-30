@@ -63,7 +63,7 @@ Delete: Click "Delete" button to remove selected breweries
 View Details: Left-click on any card to see brewery information
 
 🌐 Live Demo
-
+https://nextjs-brewery-app.vercel.app/
 
 📄 License
 MIT License - feel free to use this project for learning purposes!
