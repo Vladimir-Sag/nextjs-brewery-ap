@@ -6,7 +6,8 @@ export default function Home() {
   const [chooseCard, setChooseCard] = useState<Set<string>>(new Set());
   const [currentIndex, setCurrentIndex] = useState(0);
   
-
+  
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [cardHeight, setCardHeight] = useState(0);
 
@@ -55,6 +56,18 @@ export default function Home() {
       setCurrentIndex(VISIBLE_COUNT - 1);
     }
   }, [currentIndex, maxSlideIndex, lazyScrollDown]);
+
+  const onWheel = useCallback(
+    async (e: React.WheelEvent) => {
+      if (e.deltaY > 0) {
+        await scrollDown();
+      } else {
+        scrollUp();
+      }
+    },
+    [scrollDown, scrollUp]
+  );
+
 
   function toggleSelectedCard(id: string) {
     setChooseCard(prev => {
@@ -125,15 +138,9 @@ export default function Home() {
 
       <div className="max-w-3xl mx-auto flex flex-col items-center">
 
-        <button
-          className="bg-cyan-600 hover:bg-cyan-700 disabled:opacity-40 text-white w-28 py-3 rounded-xl mb-4 font-semibold transition-all shadow-lg"
-          onClick={scrollUp}
-          disabled={currentIndex === 0}
-        >
-          ↑ Up
-        </button>
-
         <div
+          ref={scrollContainerRef}
+          onWheel={onWheel}
           className="w-full overflow-hidden border-4 border-gray-700 rounded-2xl bg-gray-800 shadow-2xl "
           style={{ height: cardHeight ? `${viewportHeight}px` : "500px" }}
         >
@@ -152,14 +159,6 @@ export default function Home() {
             ))}
           </div>
         </div>
-
-        <button
-          className="bg-cyan-600 hover:bg-cyan-700 disabled:opacity-40 text-white w-28 py-3 rounded-xl mt-4 font-semibold transition-all shadow-lg"
-          onClick={scrollDown}
-          disabled={currentIndex >= maxSlideIndex && !hasMore}
-        >
-          ↓ Down
-        </button>
 
       </div>
     </div>
